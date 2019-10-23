@@ -2,14 +2,14 @@ import java.awt.EventQueue;
 
 /**
  * Clase principal
- * @author oscarlaguna
+ * @author Roberto González Martín
  *
  */
 public class Principal {
 
 	/**
-	 * MÃ©todo main
-	 * @param args : Cadenas de parÃ¡metros del main
+	 * Método main
+	 * @param args : Cadenas de parámetros del main
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
