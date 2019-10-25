@@ -139,7 +139,12 @@ public class VentanaPrincipal {
 	 * Método que inicializa todos los listeners que necesita inicialmente el programa
 	 */
 	public void inicializarListeners(){
-		//TODO
+		botonEmpezar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				juego = new ControlJuego();
+			}
+		});
 	}
 	
 	
@@ -151,12 +156,17 @@ public class VentanaPrincipal {
 	 * - 1 : cyan
 	 * - 2 : verde
 	 * - 3 : naranja
-	 * - 4 Ã³ mÃ¡s : rojo 
+	 * - 4 o más: rojo 
 	 * @param i: posición vertical de la celda.
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i , int j) {
-		//TODO
+		JLabel casilla;
+		if(juego.abrirCasilla(i, j)) {
+			casilla = new JLabel(String.valueOf(juego.getMinasAlrededor(i, j)));
+			casilla.setForeground(correspondenciaColores[Integer.parseInt(casilla.getText())]);
+		}
+		
 	}
 	
 	
@@ -166,14 +176,18 @@ public class VentanaPrincipal {
 	 * @post : Todos los botones se desactivan excepto el de volver a iniciar el juego.
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
-		//TODO
+		if(juego.esFinJuego()) {
+			porExplosion = false;
+		}else {
+			porExplosion = true;
+		}
 	}
 
 	/**
 	 * Método que muestra la puntuación por pantalla.
 	 */
 	public void actualizarPuntuacion() {
-		//TODO
+		pantallaPuntuacion.setText(String.valueOf(juego.getPuntuacion()));
 	}
 	
 	/**
