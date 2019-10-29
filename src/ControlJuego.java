@@ -44,7 +44,18 @@ public class ControlJuego {
 			}
 		}
 		for (int i = 0; i < MINAS_INICIALES; i++) {
-			tablero[new Random().nextInt(LADO_TABLERO)][new Random().nextInt(LADO_TABLERO)] = MINA;
+			boolean esMina = false;
+			do {
+				int random1 = new Random().nextInt(LADO_TABLERO);
+				int random2 = new Random().nextInt(LADO_TABLERO);
+				if(tablero[random1][random2] == MINA) {
+					esMina = true;
+				}
+				else {
+					esMina = false;
+					tablero[random1][random2] = MINA;
+				}
+			}while(esMina);
 		}
 		// Al final del método hay que guardar el número de minas para las casillas que
 		// no son mina:
