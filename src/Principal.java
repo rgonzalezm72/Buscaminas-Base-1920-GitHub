@@ -1,7 +1,7 @@
 import java.awt.EventQueue;
-
 /**
  * Clase principal
+ * 
  * @author Roberto González Martín
  *
  */

@@ -12,7 +12,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
+/**
+ * Clase donde inicializamos la ventana con sus diferentes componentes y listeners
+ * 
+ * @author Roberto González Martín
+ *
+ */
 public class VentanaPrincipal {
 
 	// La ventana principal, en este caso, guarda todos los componentes:
@@ -165,8 +170,12 @@ public class VentanaPrincipal {
 	 * Pinta en la pantalla el número de minas que hay alrededor de la celda Saca el
 	 * botón que haya en la celda determinada y añade un JLabel centrado y no
 	 * editable con el número de minas alrededor. Se pinta el color del texto según
-	 * la siguiente correspondecia (consultar la variable correspondeciaColor): - 0
-	 * : negro - 1 : cyan - 2 : verde - 3 : naranja - 4 o más: rojo
+	 * la siguiente correspondecia (consultar la variable correspondeciaColor): 
+	 * - 0: negro 
+	 * - 1 : cyan 
+	 * - 2 : verde 
+	 * - 3 : naranja 
+	 * - 4 o más: rojo
 	 * 
 	 * @param i: posición vertical de la celda.
 	 * @param j: posición horizontal de la celda.
