@@ -107,7 +107,7 @@ public class ControlJuego {
 	 *         minas.
 	 **/
 	public boolean esFinJuego() {
-		if(puntuacion==(tablero.length-MINAS_INICIALES)) {
+		if(puntuacion==((tablero.length*tablero.length)-MINAS_INICIALES)) {
 			return true;
 		}
 		return false;
