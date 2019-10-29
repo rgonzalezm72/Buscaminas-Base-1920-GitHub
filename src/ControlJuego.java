@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -39,10 +38,14 @@ public class ControlJuego {
 		// TODO: Repartir minas e inicializar puntuación. Si hubiese un tablero
 		// anterior, lo pongo todo a cero para inicializarlo.
 		puntuacion = 0;
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero[i].length; j++) {
+				tablero[i][j] = 0;
+			}
+		}
 		for (int i = 0; i < MINAS_INICIALES; i++) {
 			tablero[new Random().nextInt(LADO_TABLERO)][new Random().nextInt(LADO_TABLERO)] = MINA;
 		}
-
 		// Al final del método hay que guardar el número de minas para las casillas que
 		// no son mina:
 		for (int i = 0; i < tablero.length; i++) {
@@ -52,6 +55,7 @@ public class ControlJuego {
 				}
 			}
 		}
+		depurarTablero();
 	}
 
 	/**
@@ -66,46 +70,13 @@ public class ControlJuego {
 	 **/
 	private int calculoMinasAdjuntas(int i, int j) {
 		int contador = 0;
-		for (i = 0; i < LADO_TABLERO; i++) {
-			for (j = 0; j < LADO_TABLERO; j++) {
-				contador = 0;
-				if (tablero[i][j] != MINA) {
-					if (i != 0 && j != 0 && i != LADO_TABLERO - 1 && j != LADO_TABLERO - 1) {
-						if (tablero[i][j - 1] == MINA) {
-							contador++;
-						}
-						if (tablero[i - 1][j - 1] == MINA) {
-							contador++;
-						}
-						if (tablero[i + 1][j - 1] == MINA) {
-							contador++;
-						}
-						if (tablero[i][j + 1] == MINA) {
-							contador++;
-						}
-						if (tablero[i + 1][j + 1] == MINA) {
-							contador++;
-						}
-						if (tablero[i - 1][j + 1] == MINA) {
-							contador++;
-						}
-						if (tablero[i + 1][j] == MINA) {
-							contador++;
-						}
-						if (tablero[i - 1][j] == MINA) {
-							contador++;
-						}
-						if (tablero[i - 1][LADO_TABLERO - 1] == MINA) {
-							contador++;
-						}
-						if (tablero[LADO_TABLERO - 1][j - 1] == MINA) {
-							contador++;
-						}
-						if (contador != 0) {
-							tablero[i][j] = contador;
-						}
+		for (int k = -1; k < 2; k++) {
+			for (int l = -1; l < 2; l++) {
+				if(i+k< LADO_TABLERO && i+k>=0 && j+l<LADO_TABLERO && j+l>=0) {
+					if(tablero[i+k][j+l]==MINA) {
+						contador++;
 					}
-				}
+				} 
 			}
 		}
 		return contador;
@@ -136,7 +107,7 @@ public class ControlJuego {
 	 *         minas.
 	 **/
 	public boolean esFinJuego() {
-		if(puntuacion==80) {
+		if(puntuacion==(tablero.length-MINAS_INICIALES)) {
 			return true;
 		}
 		return false;
@@ -178,5 +149,4 @@ public class ControlJuego {
 	public int getPuntuacion() {
 		return puntuacion;
 	}
-
 }

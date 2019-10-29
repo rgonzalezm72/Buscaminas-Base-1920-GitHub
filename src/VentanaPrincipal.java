@@ -125,7 +125,7 @@ public class VentanaPrincipal {
 				panelesJuego[i][j].add(botonesJuego[i][j]);
 			}
 		}
-		
+
 		// BotonEmpezar:
 		panelEmpezar.add(botonEmpezar);
 		panelPuntuacion.add(pantallaPuntuacion);
@@ -137,18 +137,28 @@ public class VentanaPrincipal {
 	 * programa
 	 */
 	public void inicializarListeners() {
-		juego.depurarTablero();
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				botonesJuego[i][j].addActionListener(new ActionBoton(juego, i, j, this));
+			}
+		}
+
 		botonEmpezar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				juego = new ControlJuego();
+				juego.inicializarPartida();
+				actualizarPuntuacion();
+
+				for (int i = 0; i < botonesJuego.length; i++) {
+					for (int j = 0; j < botonesJuego[i].length; j++) {
+						panelesJuego[i][j].removeAll();
+						panelesJuego[i][j].add(botonesJuego[i][j]);
+						botonesJuego[i][j].setEnabled(true);
+					}
+				}
+				refrescarPantalla();
 			}
 		});
-		for (int i = 0; i < botonesJuego.length; i++) {
-			for (int j = 0; j < botonesJuego[i].length; j++) {
-				botonesJuego[i][j].addActionListener(new ActionBoton(juego, j, j, this));
-			}
-		}
 	}
 
 	/**
@@ -162,10 +172,13 @@ public class VentanaPrincipal {
 	 * @param j: posición horizontal de la celda.
 	 */
 	public void mostrarNumMinasAlrededor(int i, int j) {
-		panelesJuego[i][j].remove(botonesJuego[i][j]);
-		labelJuego = new JLabel(String.valueOf(juego.getMinasAlrededor(i, j)));
-		labelJuego.setForeground(correspondenciaColores[Integer.parseInt(labelJuego.getText())]);
-		panelesJuego[i][j].add(labelJuego);
+		int minasAlrededor = juego.getMinasAlrededor(i, j);
+		JLabel casilla;
+		panelesJuego[i][j].remove(0);
+		casilla = new JLabel(String.valueOf(minasAlrededor));
+		casilla.setHorizontalAlignment(0);
+		casilla.setForeground(correspondenciaColores[minasAlrededor]);
+		panelesJuego[i][j].add(casilla);
 		refrescarPantalla();
 	}
 
@@ -180,9 +193,17 @@ public class VentanaPrincipal {
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
 		if (porExplosion) {
-			System.out.println("Mina explotada, fin de juego");
+			JOptionPane.showMessageDialog(ventana, "Mina explotada, fin del juego", "GAME OVER",
+					JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			System.out.println("Enhorabuena, has ganado!");
+			JOptionPane.showMessageDialog(ventana, "Has ganado la partida", "ENHORABUENA",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+
+		for (int i = 0; i < botonesJuego.length; i++) {
+			for (int j = 0; j < botonesJuego[i].length; j++) {
+				botonesJuego[i][j].setEnabled(false);
+			}
 		}
 	}
 
@@ -220,5 +241,4 @@ public class VentanaPrincipal {
 		inicializarComponentes();
 		inicializarListeners();
 	}
-
 }
