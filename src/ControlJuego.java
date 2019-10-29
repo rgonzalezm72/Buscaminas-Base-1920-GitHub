@@ -92,7 +92,7 @@ public class ControlJuego {
 	 * @return : Verdadero si no ha explotado una mina. Falso en caso contrario.
 	 */
 	public boolean abrirCasilla(int i, int j) {
-		if (tablero[i][j] == -1) {
+		if (tablero[i][j] == MINA) {
 			return false;
 		}
 		puntuacion++;

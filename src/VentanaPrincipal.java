@@ -193,13 +193,11 @@ public class VentanaPrincipal {
 	 */
 	public void mostrarFinJuego(boolean porExplosion) {
 		if (porExplosion) {
-			JOptionPane.showMessageDialog(ventana, "Mina explotada, fin del juego", "GAME OVER",
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(ventana, "Mina explotada, fin del juego", "GAME OVER", JOptionPane.INFORMATION_MESSAGE);
 		} else {
-			JOptionPane.showMessageDialog(ventana, "Has ganado la partida", "ENHORABUENA",
-					JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(ventana, "Has ganado la partida", "ENHORABUENA", JOptionPane.INFORMATION_MESSAGE);
 		}
-
+		
 		for (int i = 0; i < botonesJuego.length; i++) {
 			for (int j = 0; j < botonesJuego[i].length; j++) {
 				botonesJuego[i][j].setEnabled(false);
