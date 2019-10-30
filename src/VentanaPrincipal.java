@@ -13,10 +13,17 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 /**
+ * 
+ * 
  * Clase donde inicializamos la ventana con sus diferentes componentes y listeners
  * 
  * @author Roberto González Martín
- *
+ * @version 1.0
+ * @since 1.0
+ * @see ControlJuego
+ * {@link #inicializar()}
+ * 
+ * 
  */
 public class VentanaPrincipal {
 
@@ -44,6 +51,9 @@ public class VentanaPrincipal {
 	ControlJuego juego;
 
 	// Constructor, marca el tamaño y el cierre del frame
+	/**
+	 * Inicializa la ventana o frame con el tamaño especificado y la variable juego
+	 */
 	public VentanaPrincipal() {
 		ventana = new JFrame();
 		ventana.setBounds(100, 100, 700, 500);
@@ -51,7 +61,9 @@ public class VentanaPrincipal {
 		juego = new ControlJuego();
 	}
 
-	// Inicializa todos los componentes del frame
+	/**
+	 * Inicializa todos los componentes de la ventana o frame
+	 */
 	public void inicializarComponentes() {
 
 		// Definimos el layout:

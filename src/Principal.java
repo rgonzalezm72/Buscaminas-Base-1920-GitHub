@@ -1,9 +1,13 @@
 import java.awt.EventQueue;
 /**
+ * 
+ * 
  * Clase principal
  * 
  * @author Roberto González Martín
- *
+ * @version 1.0
+ * @since 1.0
+ * 
  */
 public class Principal {
 
